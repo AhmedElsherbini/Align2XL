@@ -137,7 +137,6 @@ if (f == "y"):
 
     
 
-#here be aware, merging fasta of large files takes much time and merge lines sometimes!
 elif (f =="m"): 
     print("Be alarmed, I will merge all txt (fasta) files in your dir to make one fasta file")
     dir = input("where is the direcroy you want to merge all files in?:") # my advice is to use linux seqkit tool if you have genomes or big files
@@ -155,8 +154,8 @@ elif (f =="m"):
     
 ############################################################################################
 #%%
-#gc conent and At and number of unkown bases (extra work)
-u = input("8_do you want to know GC content of your DNA seq? press y/n:")
+#gc conent and At and number of unkown bases 
+u = input("8_do you want to know GC content and N bases of your DNA seq? press y/n:")
 if (u == "y"):
     file_path_out = input("what is the name of your file?")
     k = [("ID","GC content%")]
