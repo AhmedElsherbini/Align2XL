@@ -104,7 +104,7 @@ if (lui == "y"):
        out.close()
        print("here you are the file:exctracted_genes.fasta")
 ################################################
-a = input("6-do you want to translat DNA fasta file on the 1 frame? y/n:")
+a = input("6-do you want to translat multi/DNA fasta file on the 1 frame? y/n:")
 if (a == "y"):
     zeze = input("what is the name of DNA file?")
     with open ("translated_file.fasta" , "w") as aa_fa:
