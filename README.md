@@ -15,7 +15,7 @@ make sure you have the files in the same directory as the tool for own comfort!
 python3 Multifasta_analysis_tool.py
 
 ```
-thne just answer questions !
+then just answer questions !
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
 
