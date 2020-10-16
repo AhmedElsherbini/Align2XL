@@ -22,11 +22,11 @@ then just answer questions !
 
 2- you want to exlude sequences in a multifasta file using sequneces pattern (ex:NNN,XX)
 
-3- you want to  print all headers in your multifasta?
+3- you want to  print all headers in your multifasta
 
 4- you want extract gene from fasta/multifasta file using upstream and downstream seq
 
-5- you want to translat DNA fasta file on the 1 frame?
+5- you want to translat DNA fasta file on the 1 frame
 
 6- you want to NCBI efetch or you want to merge fasta file 
 
