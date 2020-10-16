@@ -12,7 +12,7 @@ The tool is written to be used on Linux command line
 make sure you have the files in the same directory as the tool for own comfort!
 
 ```python
-python3 Multifasta_analysis_tool
+python3 Multifasta_analysis_tool.py
 
 ```
 thne just answer questions !
