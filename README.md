@@ -1,9 +1,24 @@
 # Multifasta_analysis_tool
-HI,
-this tool I made it to help me in analysis of bacterial and viral genomes to be friendly 
-#the tool is based mainly in linux but some chuhcks (questions) of code it can work on MAC and windows OS
-#To run the put your files in the same directory with python script tool 
-then, type on your command line
-$ python3 Multifasta_analysis_tool.py 
-then just anwer question !!
-please, if you have any comment , issue or comment , pull a request!
+
+This tool is used to filter and analysis of multifasta files. Also you can extract genes from the files !
+
+## Installation
+
+Make sure that you have python 3 or above and all the dependacies!
+
+
+
+## Usage
+
+```python
+python3 Multifasta_analysis_tool
+
+```
+
+## Contributing
+Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate.
+the tool is still underdevelopment
+## License
+please, cite my page if this tool was useful for your work
