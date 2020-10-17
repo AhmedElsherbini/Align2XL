@@ -17,7 +17,7 @@ python3 Multifasta_analysis_tool.py
 ```
 then just answer questions !
 
-## this tool can be used if..
+## This tool can be used if..
 1- you want extract genes using its start/end postion in aligned_file.afa (more accurate) or fasta file
 
 2- you want to exlude sequences in a multifasta file using sequneces pattern (ex:NNN,XX)
