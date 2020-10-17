@@ -28,7 +28,7 @@ then just answer questions !
 
 5- you want to translat DNA fasta file on the its 1 frame
 
-6- you want to efetch data from NCBI or you want to merge your fasta files 
+6- you want to efetch data from NCBI or you want to merge your multifasta files 
 
 7- you want to know GC content and N bases content of your DNA seq
 
