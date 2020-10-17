@@ -36,7 +36,7 @@ then just answer questions !
 
 9- you want to draw a tree.dnd using python matplotlib
 
-10-you want to extract the longest conserved seuqnece and you want to call mutations between your  aligned genomes , gene proteins clustal_file.aln and the output is just fasta for your conserved sequnec and xlsx file for muations with a graph where is the mutation
+10- you want to extract the longest conserved seuqnece and you want to call mutations between your  aligned genomes , gene proteins clustal_file.aln and the output is just fasta for your conserved sequnec and xlsx file for muations with a graph where is the mutation
 
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
