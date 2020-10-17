@@ -4,12 +4,12 @@ This tool is used to filter and manipulate of multifasta files. Also you can ext
 
 ## Installation
 
-Make sure that you have python 3 or above and all the dependacies!
+Make sure that you have python 3.7 or above and all the dependacies (Biopython, matplotlib, pandas , numpy , difflib, re )
 
-The tool is written to be used on Linux command line
+The tool was written to be used on Linux command line or any python IDE !
 
 ## Usage
-make sure you have the files in the same directory as the tool for own comfort!
+For own comfort, make sure you have the files in the same directory as the tool!
 
 ```python
 python3 Multifasta_analysis_tool.py
