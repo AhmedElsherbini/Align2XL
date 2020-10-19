@@ -18,17 +18,17 @@ python3 Multifasta_analysis_tool.py
 then just answer questions !
 
 ## This tool can be used if..
-1- you want extract genes using its start/end postion in aligned_file.afa (more accurate) or fasta file
+1- you want extract a gene using its start/end postion in aligned_file.afa (more accurate) or multi/fasta file
 
-2- you want to exlude sequences in a multifasta file using sequneces pattern (ex:NNN,XX)
+2- you want to exlude sequences in a multifasta file using a pattern in the sequneces (ex:NNN,XX)
 
 3- you want to  print all  ID headers in your multifasta
 
-4- you want extract gene from fasta/multifasta file using it's upstream and downstream seq
+4- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
 
 5- you want to translat DNA fasta file on the its 1 frame
 
-6- you want to efetch data from NCBI or you want to merge your multifasta files 
+6- you want to efetch data from NCBI or you want to merge your multifasta files in accurate and fast way 
 
 7- you want to know GC content and N bases content of your DNA seq
 
@@ -36,7 +36,7 @@ then just answer questions !
 
 9- you want to draw a tree.dnd using python matplotlib
 
-10- you want to extract the longest conserved seuqnece and you want to call mutations between your  aligned genomes , gene proteins clustal_file.aln and the output is just fasta for your conserved sequnec and xlsx file for muations with a graph where is the mutation
+10- you want to extract the longest conserved seuqnece and you want to call variants between your  aligned genomes , genes or proteins from a clustal_file.aln and the output is just fasta for your conserved sequnec and xlsx file for variants with a graph where is a map for the mutation 
 
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
