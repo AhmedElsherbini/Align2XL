@@ -43,5 +43,7 @@ Pull requests are very welcome. For major changes, please open an issue first to
 
 Please make sure to update tests as appropriate.
 the tool is still under development !
+contact me directly on email : drahmedsherbini@yahoo.com
 ## License
 Please, cite my page if this tool was useful for your work
+
