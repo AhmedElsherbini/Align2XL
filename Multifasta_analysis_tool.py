@@ -4,7 +4,7 @@
 created in : June 2020
 This is a copy right for the author - do not distrbute
 dependacies: see below
-update: 16/10/2020
+update: 23/10/2020
 please cite my page if you used this script
 """
 #import
@@ -32,6 +32,14 @@ import pandas as pd
 import numpy as np
 from difflib import SequenceMatcher 
 import re
+import re
+from collections import Counter
+import copy
+from io import StringIO
+from Bio import Phylo
+from Bio.Phylo.Applications import PhymlCommandline
+from Bio.Phylo.PAML import codeml
+from Bio.Phylo.PhyloXML import Phylogeny
 
 ###################################################################################
 #%% #in SPYDER this help to chunk the code!
@@ -154,7 +162,7 @@ elif (f =="m"):
     
 ############################################################################################
 #%%
-#gc conent and At and number of unkown bases 
+#gc conent  and the number of N ambigous bases 
 u = input("8_do you want to know GC content and N bases of your DNA seq? press y/n:")
 if (u == "y"):
     file_path_out = input("what is the name of your file?")
@@ -205,29 +213,37 @@ elif (x == "f"):
 #################################################################################
 #%%
 #phylogentic tree
-
-tr = input("10_do you want to draw a tree.dnd? y/n?")
+tr = input("10_do you want to draw a phylogentic tree? y/n?")
 if (tr == "y"):
-    sh = input("To draw a tree, enter your/path , directory/ merged_file.dnd: ")
-    #C:/Users/ahmed/Downloads/merged_file.dnd
-    tree = Phylo.read(sh, 'newick')
+    fathiha = input("is your tree (NOT) a newick formant like (.dnd,.nwk):press y/n:")
+    if (fathiha == "y"):
+        zeineb = input("what is the name of this tree?:")
+        lathifa = input("what is the format of this tree (ex:nexus)?:")
+        print("make sure that headers names does not conatain any confilect with newick format!")
+        Phylo.convert(zeineb,str(lathifa),"New_file.dnd", "newick")
+
+    seham = input("So, what is the name of your newick tree(.dnd or.nwk)?:")
+    tree = Phylo.read(seham, 'newick')
     tree.ladderize()   # Flip branches so deeper clades are displayed at top
-    Phylo.draw(tree) 
+    Phylo.draw(tree, branch_labels=lambda c: c.branch_length, color = "green" )
+
+    print("here you are:the tree")
+
+
 
 ################################################################################    
 #%%
-#to extract the longest conserved sequneces  mutations from gene , genome or ptotein 
-
+#to extract conserved _muation from protein
  
-w = input("11_do you want to extract the longest conserved & the mutations from  your clustal_file.aln? press y/n:")
+w = input("11_do you want to extract the longest conserved /mutations between your clustal_file.aln? press y/n:")
 #C:/Users/ahmed/Downloads/merged_file.aln #kindly know that this code is not adapted to clustal files only
 if (w == "y"):
-    print("make sure you input file does not have any outliers, outgroups")
-    xp = input("what is the name of your file.aln:")
-    aln = AlignIO.read(xp, "clustal")
+    print("make sure you input file.aln does not have any outliers, outgroups")
+    zizo = input("what is the name of your file.aln:")
+    aln = AlignIO.read(zizo, "clustal")
     #C:/Users/ahmed/Downloads/protein_alignment.aln
     mz = int(len(aln))
-    # 7 , 9 , 8000 #the advatge here is the script is friendely with computional resoursces
+    # 7 , 9 , 8000
     A = ("A"*mz)
     G = ("G"*mz)
     C = ("C"*mz)
@@ -306,7 +322,7 @@ if (w == "y"):
     s2 = str(aln[0].seq) #the first seq in the clustal file
     len1, len2 = len(s1), len(s2)
     ir, jr = 0, -1 #the best solution for longest common subtring problem (https://rosettacode.org/wiki/Longest_Common_Substring#Python)
-    for i1 in range(len1): #takes around 5 min for lenght 30 kb and number of 2000 sequences
+    for i1 in range(len1): #takes around  minutes for lenght 30 kb and number of 2000 sequences
         i2 = s2.find(s1[i1])
         while i2 >= 0:
             j1, j2 = i1, i2
@@ -317,7 +333,7 @@ if (w == "y"):
             i2 = s2.find(s1[i1], i2+1)
     rs = str(s1[ir:jr+1])
 
-    Result = open("longest_conserved_seq.fasta", "w")
+    Result = open("longest_conserved_%s_file.fasta"%(zizo), "w")
     Result.write('>Longest_conserved_seq\n')
     Result.write(rs) #very useful for PCR primer designing
     Result.close()
@@ -326,23 +342,26 @@ if (w == "y"):
     #len(yr) == str(aln.column_annotations).count("*")
     #if you get true you are in the right track!
     print ("%f percent of conserved bases" %(treka))
-    print("here you are: longest_conserved_seq.fasta ")
+    print("here you are: longest_conserved_seq_%s_file.fasta"%(zizo))
     
    ####################################################
     ##lets get unconserved basis
-    yo =[(("mutation_pattern"),("position"))]
+    hass =[]
     for xe in range(aln.get_alignment_length()):
         if (str(aln[:,xe]).upper() != A) and (str(aln[:,xe]).upper() != T) and (str(aln[:,xe]).upper() != C) and (str(aln[:,xe]).upper() != G) and (str(aln[:,xe]).upper() != R) and (str(aln[:,xe]).upper() != N) and (str(aln[:,xe]).upper() != Q) and (str(aln[:,xe]).upper() != H) and (str(aln[:,xe]).upper() != E)  and (str(aln[:,xe]).upper() != I) and (str(aln[:,xe]).upper() != L) and (str(aln[:,xe]).upper() != K) and (str(aln[:,xe]).upper() != M) and (str(aln[:,xe]).upper() != F) and (str(aln[:,xe]).upper() != P) and (str(aln[:,xe]).upper() != O) and (str(aln[:,xe]).upper() != S) and (str(aln[:,xe]).upper() != U) and (str(aln[:,xe]).upper() != W) and (str(aln[:,xe]).upper() != Y) and (str(aln[:,xe]).upper() != D) and (str(aln[:,xe]).upper() != V) and (str(aln[:,xe]).upper() != astr) and (str(aln[:,xe]).upper() != XUN):
-            yo.append((set(aln[:,xe]),int(xe)+1)) # this step to give you where really the uncoserved/mutations part is, +1 as python indexing start from 0
-
-    
-    GRG = pd.ExcelWriter("mutations_file.xlsx")
-    df = pd.DataFrame(yo)
+            hass.append((list(Counter(str(aln[:,xe]))),int((xe)+1))) #my favorite line :) count to get the wild type
+    yo = []
+    for elem in hass:
+        yo.append("%s%s%s"%(elem[0][0],elem[1],elem[0][1]))
+   
+    GRG = pd.ExcelWriter("mutations_%s_file.xlsx"%(zizo))
+    df = pd.DataFrame({"(['WT', 'mutation(s)'], pos)":hass, "Final(xpt if >1 mutation in same pos or X)":yo})
     df.to_excel(GRG, index = False)
     GRG.save()
-    
+
+
     kp =[]
-    for xx in yo:#here i want to extract the mutation position like (8,19,200..) from the list of tupules
+    for xx in hass:#here i want to extract the mutation position like (8,19,200..) from the list of tupules
         kp.append(xx[1])
     kp.pop(0) # to remove the first string in kp list #take care if you repeat this you will lose one element
     lp = list(range(0, len(kp))) #the index of list will represent the mutation number
@@ -351,9 +370,8 @@ if (w == "y"):
     plt.xlabel('length of genome , gene or protein')
     plt.ylabel('number of unconserved bases/mutations')
     plt.title('distrubtion of mutations/unconserved bases')
-    plt.savefig("mutations_graph.jpg") #save your file!
+    plt.savefig("mutations_graph_%s_file.jpg"%(zizo)) #save your file!
     print("here you are: mutations_file.xlsx,mutations_graph.jpg ")
     #the idea here i want to know where my mutations or my unconervead bases positions in geneme
-    #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clusta
 
     ##########################################################################################
