@@ -8,7 +8,7 @@ update: 23/10/2020
 please cite my page if you used this script
 """
 #import
-print("Hi, #1_to work make sure you have python 3.xx , biopython , Muscle and MAFFT installed on your PC #2_this is an semi automated tool, just run it and answer questions PRECISELY!")
+print("Hi, #1_to work make sure you have python 3.xx , biopython , Muscle and MAFFT installed on your PC #2_this is a friendly tool, just run it and answer questions PRECISELY!")
 import os as os
 import sys
 from Bio import Entrez
