@@ -41,7 +41,6 @@ then just answer questions !
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
 the tool is still under development !
 
 Contact me directly on email : drahmedsherbini@yahoo.com
