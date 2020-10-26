@@ -26,7 +26,7 @@ then just answer questions !
 
 4- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
 
-5- you want to translat DNA fasta file on the its 1 frame
+5- you want to translat DNA multifasta file on the it's 1st frame
 
 6- you want to efetch data from NCBI or you want to merge your multifasta files in accurate and fast way 
 
