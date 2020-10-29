@@ -10,12 +10,13 @@ The tool was written to be used on Linux command line or any python IDE !
 
 ## Usage
 For your own comfort, make sure you have the files in the same directory as the tool!
+Type in your command line, then just answer questions !
+
 
 ```python
 python3 Multifasta_analysis_tool.py
 
 ```
-then just answer questions !
 
 ## This tool can be used if..
 1- you want to extract a gene using its start/end postion in aligned_file.afa (more accurate) or multi/fasta file
