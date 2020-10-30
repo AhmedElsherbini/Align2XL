@@ -365,7 +365,7 @@ if (w == "y"):
             yo.append("%s%s%s"%(elem[0][0][0],elem[1],elem[0][1][0]))
         if len(elem[0]) == 3:
             yo.append(("%s%s%s"%(elem[0][0][0],elem[1],elem[0][1][0]),"%s%s%s"%(elem[0][0][0],elem[1],elem[0][2][0])))
-        if len(elem[0]) == 4:
+        if len(elem[0]) > 3:
             yo.append(("%s%s%s"%(elem[0][0][0],elem[1],elem[0][1][0]),"%s%s%s"%(elem[0][0][0],elem[1],elem[0][2][0]),"%s%s%s"%(elem[0][0][0],elem[1],elem[0][3][0])))
 
                       
