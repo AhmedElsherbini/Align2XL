@@ -4,11 +4,10 @@
 created in : June 2020
 This is a copy right for the author - do not distrbute
 dependacies: see below
-update: 23/10/2020
-please cite my page if you used this script
+update: 29/10/2020
 """
 #import
-print("Hi, #1_to work make sure you have python 3.xx , biopython , Muscle and MAFFT installed on your PC #2_this is a friendly tool, just run it and answer questions PRECISELY!")
+print("Hi, #1_to work make sure you have biopython , ClustalW, Muscle and MAFFT installed on your PC #2_this is an semi automated tool, just run it and answer questions PRECISELY!")
 import os as os
 import sys
 from Bio import Entrez
@@ -31,7 +30,6 @@ from Bio.Cluster import pca
 import pandas as pd
 import numpy as np
 from difflib import SequenceMatcher 
-import re
 import re
 from collections import Counter
 import copy
@@ -112,7 +110,7 @@ if (lui == "y"):
        out.close()
        print("here you are the file:exctracted_genes.fasta")
 ################################################
-a = input("6-do you want to translat multi/DNA fasta file on the 1 frame? y/n:")
+a = input("6-do you want to translat DNA fasta file on the 1 frame? y/n:")
 if (a == "y"):
     zeze = input("what is the name of DNA file?")
     with open ("translated_file.fasta" , "w") as aa_fa:
@@ -145,6 +143,7 @@ if (f == "y"):
 
     
 
+#here be aware, merging fasta of large files takes much time and merge lines sometimes!
 elif (f =="m"): 
     print("Be alarmed, I will merge all txt (fasta) files in your dir to make one fasta file")
     dir = input("where is the direcroy you want to merge all files in?:") # my advice is to use linux seqkit tool if you have genomes or big files
@@ -162,8 +161,8 @@ elif (f =="m"):
     
 ############################################################################################
 #%%
-#gc conent  and the number of N ambigous bases 
-u = input("8_do you want to know GC content and N bases of your DNA seq? press y/n:")
+#gc conent and At and number of unkown bases (extra work)
+u = input("8_do you want to know GC content and N bases content of your DNA seq? press y/n:")
 if (u == "y"):
     file_path_out = input("what is the name of your file?")
     k = [("ID","GC content%")]
@@ -213,13 +212,13 @@ elif (x == "f"):
 #################################################################################
 #%%
 #phylogentic tree
+
 tr = input("10_do you want to draw a phylogentic tree? y/n?")
 if (tr == "y"):
     fathiha = input("is your tree (NOT) a newick formant like (.dnd,.nwk):press y/n:")
     if (fathiha == "y"):
         zeineb = input("what is the name of this tree?:")
-        lathifa = input("what is the format of this tree (ex:nexus)?:")
-        print("make sure that headers names does not conatain any confilect with newick format!")
+        lathifa = input("what is the format of this tree (ex:nexus,phyloxml)?:")
         Phylo.convert(zeineb,str(lathifa),"New_file.dnd", "newick")
 
     seham = input("So, what is the name of your newick tree(.dnd or.nwk)?:")
@@ -230,7 +229,6 @@ if (tr == "y"):
     print("here you are:the tree")
 
 
-
 ################################################################################    
 #%%
 #to extract conserved _muation from protein
@@ -238,10 +236,12 @@ if (tr == "y"):
 w = input("11_do you want to extract the longest conserved /mutations between your clustal_file.aln? press y/n:")
 #C:/Users/ahmed/Downloads/merged_file.aln #kindly know that this code is not adapted to clustal files only
 if (w == "y"):
-    print("make sure you input file.aln does not have any outliers, outgroups")
+    print("make sure you input file.aln does not have any outliers,indels and outgroups")
     zizo = input("what is the name of your file.aln:")
     aln = AlignIO.read(zizo, "clustal")
     #C:/Users/ahmed/Downloads/protein_alignment.aln
+    #salah=int(input("which % of conservation you want to extract you seq (ex:100,90,..)?:"))
+    #mz = int(float(salah/100)*int(len(aln)))
     mz = int(len(aln))
     # 7 , 9 , 8000
     A = ("A"*mz)
@@ -322,7 +322,7 @@ if (w == "y"):
     s2 = str(aln[0].seq) #the first seq in the clustal file
     len1, len2 = len(s1), len(s2)
     ir, jr = 0, -1 #the best solution for longest common subtring problem (https://rosettacode.org/wiki/Longest_Common_Substring#Python)
-    for i1 in range(len1): #takes around  minutes for lenght 30 kb and number of 2000 sequences
+    for i1 in range(len1): #takes around 5 min for lenght 30 kb and number of 2000 sequences
         i2 = s2.find(s1[i1])
         while i2 >= 0:
             j1, j2 = i1, i2
@@ -340,25 +340,44 @@ if (w == "y"):
     treka = ((len(yr)/len(aln[0])*100))
     #to qc my work,
     #len(yr) == str(aln.column_annotations).count("*")
-    #if you get true you are in the right track!
+    #if you get true, you are in the right track!
     print ("%f percent of conserved bases" %(treka))
     print("here you are: longest_conserved_seq_%s_file.fasta"%(zizo))
     
    ####################################################
     ##lets get unconserved basis
     hass =[]
+    gogo = []
     for xe in range(aln.get_alignment_length()):
         if (str(aln[:,xe]).upper() != A) and (str(aln[:,xe]).upper() != T) and (str(aln[:,xe]).upper() != C) and (str(aln[:,xe]).upper() != G) and (str(aln[:,xe]).upper() != R) and (str(aln[:,xe]).upper() != N) and (str(aln[:,xe]).upper() != Q) and (str(aln[:,xe]).upper() != H) and (str(aln[:,xe]).upper() != E)  and (str(aln[:,xe]).upper() != I) and (str(aln[:,xe]).upper() != L) and (str(aln[:,xe]).upper() != K) and (str(aln[:,xe]).upper() != M) and (str(aln[:,xe]).upper() != F) and (str(aln[:,xe]).upper() != P) and (str(aln[:,xe]).upper() != O) and (str(aln[:,xe]).upper() != S) and (str(aln[:,xe]).upper() != U) and (str(aln[:,xe]).upper() != W) and (str(aln[:,xe]).upper() != Y) and (str(aln[:,xe]).upper() != D) and (str(aln[:,xe]).upper() != V) and (str(aln[:,xe]).upper() != astr) and (str(aln[:,xe]).upper() != XUN):
-            hass.append((list(Counter(str(aln[:,xe]))),int((xe)+1))) #my favorite line :) count to get the wild type
-    yo = []
-    for elem in hass:
-        yo.append("%s%s%s"%(elem[0][0],elem[1],elem[0][1]))
+            cc = Counter(str(aln[:,xe]))
+            cc = cc.most_common()
+            hass.append((cc,int((xe)+1))) 
+            gogo.append(cc) #this libe to get the pattern of the muatations
    
+    yo = []
+    ramy = []
+    youssef = len(aln[:,xe])
+    for elem in hass:
+        tarb = float(100*(int(int(elem[0][0][1]))/youssef))
+        ramy.append(100 -tarb)
+        if len(elem[0]) == 2:
+            yo.append("%s%s%s"%(elem[0][0][0],elem[1],elem[0][1][0]))
+        if len(elem[0]) == 3:
+            yo.append(("%s%s%s"%(elem[0][0][0],elem[1],elem[0][1][0]),"%s%s%s"%(elem[0][0][0],elem[1],elem[0][2][0])))
+        if len(elem[0]) == 4:
+            yo.append(("%s%s%s"%(elem[0][0][0],elem[1],elem[0][1][0]),"%s%s%s"%(elem[0][0][0],elem[1],elem[0][2][0]),"%s%s%s"%(elem[0][0][0],elem[1],elem[0][3][0])))
+
+                      
+    fawzia = []
+    for ghon in hass:
+        fawzia.append(ghon[1])
+   
+
     GRG = pd.ExcelWriter("mutations_%s_file.xlsx"%(zizo))
-    df = pd.DataFrame({"(['WT', 'mutation(s)'], pos)":hass, "Final(xpt if >1 mutation in same pos or X)":yo})
+    df = pd.DataFrame({"position":fawzia,"{“WT”:frequency ,“mutation(S)”:frequency}":gogo ,"mutations(xpt if X or > 3 mutation in same pos)":yo,"%_of_mutations":ramy})
     df.to_excel(GRG, index = False)
     GRG.save()
-
 
     kp =[]
     for xx in hass:#here i want to extract the mutation position like (8,19,200..) from the list of tupules
@@ -373,5 +392,10 @@ if (w == "y"):
     plt.savefig("mutations_graph_%s_file.jpg"%(zizo)) #save your file!
     print("here you are: mutations_file.xlsx,mutations_graph.jpg ")
     #the idea here i want to know where my mutations or my unconervead bases positions in geneme
+    #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clusta
+    #########################################################################################
+print("hope to see you again! ")
+print ("If you encounter any issues using me, feel free to contact Ahmed")
 
-    ##########################################################################################
+###########################################################################################
+
