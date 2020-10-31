@@ -21,23 +21,27 @@ python3 Multifasta_analysis_tool.py
 ## This tool can be used if..
 1- you want to extract a gene using its start/end postion in aligned_file.afa (more accurate) or multi/fasta file
 
-2- you want to exlude sequences in a multifasta file using a pattern in the sequneces (ex:NNN,XX)
+2- you want to inlucde certain sequences in your multifasta file using sequneces pattern (ex: gene with certain mutation)
 
-3- you want to  print all  ID headers in your multifasta
+3- you want to exlude sequences in a multifasta file using a pattern in the sequneces (ex:NNN,XX)
 
-4- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
+4- you want to  print all  ID headers in your multifasta
 
-5- you want to translat DNA multifasta file on  it's 1st frame
+5- you want to include sequences using a pattern in their headers/metadate (ex:-2019-)
 
-6- you want to efetch gene, gneome or protein seq  from NCBI or you want to merge your multifasta files in accurate and fast way 
+6- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
 
-7- you want to know GC content and N bases content of your DNA seq
+7- you want to translat DNA multifasta file on  it's 1st frame
 
-8- you want to align muscle or mafft
+8- you want to efetch gene, gneome or protein seq  from NCBI or you want to merge your multifasta files in accurate and fast way 
 
-9- you want to draw a tree.dnd using python matplotlib
+9- you want to know GC content and N bases content of your DNA seq file
 
-10- you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just fasta for your conserved sequnec and the variants as xlsx file with a graph which maps your where your mutations are!
+10- you want to align muscle or mafft
+
+11- you want to draw a tree.dnd using python matplotlib
+
+12- you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just fasta for your conserved sequnec and the variants as xlsx file with a graph which maps your where your mutations are!
 
 ## Contributing
 Pull requests are very welcome. For major changes, please open an issue first to discuss what you would like to change.
