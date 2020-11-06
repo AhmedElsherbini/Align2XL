@@ -1,6 +1,6 @@
 # Multifasta_analysis_tool 
 
-This tool is used to filter and manipulate of multifasta files. Also you can extract genes from the files. Finally, you can do the magic (Clustal2xlsx) !
+This tool is used to filter and manipulate of multifasta files. Also you can extract genes from the files. Finally, you can convert Clustal2xlsx !
 
 ## Installation
 
