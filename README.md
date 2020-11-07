@@ -31,7 +31,7 @@ python3 Multifasta_analysis_tool.py
 
 6- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
 
-7- you want to translat DNA multifasta file on  it's 1st frame
+7- you want to translate DNA multifasta file on  it's 1st frame
 
 8- you want to efetch gene, gneome or protein seq  from NCBI or you want to merge your multifasta files in accurate and fast way 
 
