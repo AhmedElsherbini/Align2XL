@@ -1,6 +1,6 @@
 # Multifasta_analysis_tool 
 
-This tool is used to filter and manipulate of multifasta files. Therefore, you can extract/ exlude sequneces from the file. Also, you can convert Clustal2xlsx and I will give you a map for your mutations and I will  plot their frequncies for you !
+This tool is used to filter and manipulate of multifasta files. Therefore, you can extract/ exlude sequneces from the file. Also, you can convert Clustal2xlsx to get the longest conserved part and I will give you a list , mutatiobns map and frequncy plot for you !
 
 ## Installation
 
