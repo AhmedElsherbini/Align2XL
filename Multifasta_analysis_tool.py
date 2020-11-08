@@ -2,9 +2,9 @@
 """
 @author: ahmed_elsherbini (drahmedsherbini@yahoo.com)
 created in : June 2020
-This is a copy right for the author - do not distrbute
+This is a copy right for the author
 dependacies: see below
-update: 1/11/2020
+update: 8/11/2020
 """
 #import
 print("Hi, #1_to work make sure you have biopython , ClustalW, Muscle and MAFFT installed on your PC #2_this is an semi automated tool, just run it and answer questions PRECISELY!")
@@ -51,9 +51,9 @@ if (f =="y"):
              for seq_record in SeqIO.parse(er, "fasta"):
                   f.write(">"+str(seq_record.id)+"\n")
                   f.write(str(seq_record.seq[int(ah)-1:int(med)-1])+ "\n")
-        print("here you are the file : filter_by_position.fasta")
+        print("here you are the file : Extract_by_position.fasta")
 #########################################################################################
-tui = input("2_do you want to inlucde certain sequences in your multifasta file using sequneces pattern (ex: gene with certain mutations)? y/n:")
+tui = input("2_do you want to inlucde certain sequences in a multifasta file using sequneces pattern (ex: gene with certain mutations)? y/n:")
 if (tui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
        homdemha = input("what is sequnece pattern you want to include  :")
@@ -62,9 +62,9 @@ if (tui == "y"):
        for seq_record in SeqIO.parse(sherb, "fasta"):
            if (seq_record.seq.find(homdemha) != -1):
                out.write(">"+str(seq_record.id)+"\n")
-               out.write(str(seq_record.seq.ungap("-"))+"\n") #some .afa files contain "--"gaps, I like to remove these gaps 
+               out.write(str(seq_record.seq.ungap("-"))+"\n")
      
-       print("here you are the file : fasta_filtred_by_inclusion.fasta")
+       print("here you are the file : fasta_filtred_by_seq_inclusion.fasta")
        out.close()
 
 
@@ -81,8 +81,10 @@ if (tui == "y"):
            else:
                out.write(">"+str(seq_record.id)+"\n")
                out.write(str(seq_record.seq.ungap("-"))+"\n")
-           out.close()
-           print("here you are the file : fasta_filtred_by_Exclusion.fasta")
+
+       print("here you are the file : fasta_filtred_by_seq_Exclusion.fasta")
+       out.close()
+           
 #########################################################################################
 
 f = input("4-do you want to  print all headers in your multifasta? y/n:")
@@ -95,7 +97,7 @@ if (f == "y"):
     out.close()
     print("here you are the file:your_file_headers.txt")
 ###########################################################################################
-f = input("5-do you want to  extract sequences using a pattern in their headers/metadate (ex:-2019-)? y/n:")
+f = input("5-do you want to include sequences using a pattern in their headers/metadate (ex:-2019-)? y/n:")
 if (f == "y"):
     sherb = input("what is the name of the fasta file?")
     homdemha = input("what is the pattern in seq header you want extract?")
@@ -106,11 +108,29 @@ if (f == "y"):
             out.write(">"+str(seq_record.id)+"\n")
             out.write(str(seq_record.seq)+"\n")
     out.close()
-    print("here you are the file:extracted_by_header.fasta")
+    print("here you are the file:extracted_by_header_inclusion.fasta")
+
+########################################################################################
+tui = input("6_do you want to exlude sequences in a multifasta file using pattern in their header/metadata? y/n:")
+if (tui == "y"):
+       sherb = input("what is the name of your fasta/multifasta file:")
+       homdemha = input("what is sequnece pattern you want to exclude:")
+       fin = "fasta_filtred_by_exclusion.fasta"
+       out = open(fin,"w")
+       for seq_record in SeqIO.parse(sherb, "fasta"):
+           if (seq_record.id.find(homdemha) != -1):
+               continue
+           else:
+               out.write(">"+str(seq_record.id)+"\n")
+               out.write(str(seq_record.seq.ungap("-"))+"\n")
+
+       print("here you are the file : fasta_filtred_by_header_Exclusion.fasta")
+       out.close()
+           
 
 
 ##########################################################
-lui = input("6-do you want to extract gene from fasta/multifasta file using upstream and downstream seq? y/n:")
+lui = input("7-do you want to extract gene from fasta/multifasta file using upstream and downstream seq? y/n:")
 if (lui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
        fin = "exctracted_genes.fasta"
@@ -126,20 +146,20 @@ if (lui == "y"):
        out.close()
        print("here you are the file:exctracted_genes.fasta")
 ################################################
-a = input("7-do you want to translat DNA fasta file on the 1 frame? y/n:")
+a = input("8-do you want to translat DNA fasta file on the 1 frame? y/n:")
 if (a == "y"):
     zeze = input("what is the name of DNA file?")
-    with open ("translated_file.fasta" , "w") as aa_fa:
+    with open ("translated_%s_file.fasta"%(zeze) , "w") as aa_fa:
         for dna_record in SeqIO.parse(zeze, "fasta"):
             aa_fa.write(">"+dna_record.id+ "\n")
             aa_fa.write(str(dna_record.seq.translate(to_stop=True))+"\n")
         aa_fa.close()
-        print("here you are the file:translated_file.fasta")
+        print("here you are the file:translated_%s_file.fasta"%(zeze))
 
 #########################################################################
 #bring your data
 
-f = input("8_if u want NCBI efetch (press y), if you want to merge all files in your Dir (press m), to skip (press any key):")
+f = input("9_if u want NCBI efetch (press y), if you want to merge all files in your Dir (press m), to skip (press any key):")
 #if you have alreay a merged file skip and press any key
 if (f == "y"):
     records = []
@@ -178,7 +198,7 @@ elif (f =="m"):
 ############################################################################################
 #%%
 #gc conent and At and number of unkown bases (extra work)
-u = input("9_do you want to know GC content and N bases content of your DNA seq? press y/n:")
+u = input("10_do you want to know GC content and N bases content of your DNA seq? press y/n:")
 if (u == "y"):
     file_path_out = input("what is the name of your file?")
     k = [("ID","GC content%")]
@@ -202,7 +222,7 @@ if (u == "y"):
 #%%
 #alignmnent
 
-x = input("10-To align, if for muscle press m, for Mafft press f,press any key to skip:")
+x = input("11-To align, if for muscle press m, for Mafft press f,press any key to skip:")
 
 if (x == "m"):
     file_path_out = input("what is name of the fasta file you would like to align?")
@@ -229,7 +249,7 @@ elif (x == "f"):
 #%%
 #phylogentic tree
 
-tr = input("11_do you want to draw a phylogentic tree? y/n?")
+tr = input("12_do you want to draw a phylogentic tree? y/n?")
 if (tr == "y"):
     fathiha = input("is your tree (NOT) a newick formant like (.dnd,.nwk):press y/n:")
     if (fathiha == "y"):
@@ -249,7 +269,7 @@ if (tr == "y"):
 #%%
 #to extract conserved _muation from protein
  
-w = input("12_do you want to extract the longest conserved seq & the mutations inside your clustal_file.aln? press y/n:")
+w = input("13_do you want to extract the longest conserved seq & the mutations inside your clustal_file.aln? press y/n:")
 #C:/Users/ahmed/Downloads/merged_file.aln #kindly know that this code is not adapted to clustal files only
 if (w == "y"):
     print("make sure you input file.aln does not have any outliers,indels and outgroups")
@@ -391,7 +411,7 @@ if (w == "y"):
    
 
     GRG = pd.ExcelWriter("mutations_%s_file.xlsx"%(zizo))
-    df = pd.DataFrame({"Position_in_%s"%(zizo):fawzia,"{“WT”:frequency ,“mutation(S)”:frequency}":gogo ,"mutations(xpt if X or > 3 mutation in same pos)":yo,"%_of_mutations":ramy})
+    df = pd.DataFrame({"Position_in_%s"%(zizo):fawzia,"{“WT”:frequency ,“mutation(S)”:frequency}":gogo ,"mutations(xpt if X or > 3 mutation in same pos)":yo,"prev%_of_mutations":ramy})
     df.to_excel(GRG, index = False)
     GRG.save()
 
@@ -402,17 +422,18 @@ if (w == "y"):
     lp = list(range(0, len(kp))) #the index of list will represent the mutation number
     print("Done, you have %s mutations/UNconserved bases" %(len(kp)))
     plt.scatter(kp,lp ,color = 'red' , s =.1,lw=4)
-    plt.xlabel('length of genome , gene or protein')
+    plt.xlabel('length of your genome , gene or protein')
     plt.ylabel('number of unconserved bases/mutations in %s'%(zizo))
     plt.title('distrubtion of mutations/unconserved bases')
-    plt.savefig("mutations_graph_%s_file.jpg"%(zizo)) #save your file!
-    print("here you are: mutations_file.xlsx,mutations_graph.jpg ")
+    plt.savefig("mutations_map_%s_file.jpg"%(zizo)) #save your file!
+    plt.scatter(fawzia,ramy)
+    for i, txt in enumerate(yo):
+        plt.annotate(txt, (fawzia[i], ramy[i]))
+    plt.ylabel('prevelance_of_mutations_%')
+    plt.xlabel('length of your genome , gene or protein')
+    plt.savefig("mutations_frequency_%s_file.jpg"%(zizo)) #save your file!
+
+        
+    print("here you are: mutations_file.xlsx,mutations_map and frequency plots ")
     #the idea here i want to know where my mutations or my unconervead bases positions in geneme
-    #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clustal
-
-print("#This the end of our journey :( , hope to see you again! ")
-print ("If you encounter any issues using me, feel free to contact Ahmed")
-##########################################################################################
-
-
-
+    #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clusta
