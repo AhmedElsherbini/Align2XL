@@ -1,6 +1,6 @@
 # Multifasta_analysis_tool 
 
-This tool is used to filter and manipulate of multifasta files. Also you can extract genes from the files. Finally, you can convert Clustal2xlsx and I will give you a map for your mutations and i will  plot their frequncy for you !
+This tool is used to filter and manipulate of multifasta files. Also you can extract genes from the files. Finally, you can convert Clustal2xlsx and I will give you a map for your mutations and I will  plot their frequncy for you !
 
 ## Installation
 
