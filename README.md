@@ -27,7 +27,7 @@ python3 Multifasta_analysis_tool.py
 
 4- you want to  print all  ID headers in your multifasta
 
-5- you want to include sequences using a pattern in their headers/metadate (ex:-2019-)
+5- you want to include/exlcude sequences using a pattern in their headers/metadate (ex:-2019-)
 
 6- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
 
