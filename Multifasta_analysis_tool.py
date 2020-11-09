@@ -53,7 +53,7 @@ if (f =="y"):
                   f.write(str(seq_record.seq[int(ah)-1:int(med)-1])+ "\n")
         print("here you are the file : Extract_by_position.fasta")
 #########################################################################################
-tui = input("2_do you want to inlucde certain sequences in a multifasta file using sequneces pattern (ex: gene with certain mutations)? y/n:")
+tui = input("2_do you want to inlucde certain sequences in a multifasta file using sequence pattern (ex: gene with certain mutations)? y/n:")
 if (tui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
        homdemha = input("what is sequnece pattern you want to include  :")
@@ -146,7 +146,7 @@ if (lui == "y"):
        out.close()
        print("here you are the file:exctracted_genes.fasta")
 ################################################
-a = input("8-do you want to translat DNA fasta file on the 1 frame? y/n:")
+a = input("8-do you want to translate DNA fasta file on it's 1 frame? y/n:")
 if (a == "y"):
     zeze = input("what is the name of DNA file?")
     with open ("translated_%s_file.fasta"%(zeze) , "w") as aa_fa:
@@ -269,7 +269,7 @@ if (tr == "y"):
 #%%
 #to extract conserved _muation from protein
  
-w = input("13_do you want to extract the longest conserved seq & the mutations inside your clustal_file.aln? press y/n:")
+w = input("13_(clustal2xlsx) do you want to extract the longest conserved seq & the mutations inside your clustal_file.aln? press y/n:")
 #C:/Users/ahmed/Downloads/merged_file.aln #kindly know that this code is not adapted to clustal files only
 if (w == "y"):
     print("make sure you input file.aln does not have any outliers,indels and outgroups")
