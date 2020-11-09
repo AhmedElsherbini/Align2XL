@@ -4,7 +4,7 @@ This tool is used to filter and manipulate of multifasta files (DNA or protein).
 
 ## Installation
 
-Make sure that you have python 3.7 or above and all the dependacies (Biopython, matplotlib, pandas , numpy , difflib, re , collections )
+Make sure that you have python 3.7 or > and all the dependacies (Biopython, matplotlib, pandas , numpy , difflib, re , collections )
 
 The tool was written to be used on Linux command line or any python IDE !
 
