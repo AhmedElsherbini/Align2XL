@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-@author: ahmed_elsherbini (drahmedsherbini@yahoo.com)
+author: ahmed_elsherbini (drahmedsherbini@yahoo.com)
 created in : June 2020
 This is a copy right for the author
-dependacies: see below
 update: 8/11/2020
 """
 #import
@@ -435,5 +434,4 @@ if (w == "y"):
 
         
     print("here you are: mutations_file.xlsx,mutations_map and frequency plots ")
-    #the idea here i want to know where my mutations or my unconervead bases positions in geneme
     #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clusta
