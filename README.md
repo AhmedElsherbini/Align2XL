@@ -39,7 +39,7 @@ python3 Multifasta_analysis_tool.py
 
 10- you want to align muscle or mafft
 
-11- you want to draw a tree.dnd using python matplotlib
+11- you want to draw a Newick tree using python matplotlib
 
 12- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just fasta for your conserved seq and the variants as xlsx file with a graph which maps your where and how your mutations are!
 
