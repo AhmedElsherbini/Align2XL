@@ -1,6 +1,6 @@
 # Multifasta_analysis_tool 
 
-This tool is used to filter and manipulate  multifasta files (DNA or protein). Therefore, you can extract/ exlude sequneces from the file. Also, you can convert Clustal2xlsx to get the longest conserved seq among your culstal files and you will get you a list and plots of the variants in your clustal file !
+This tool is used to filter and manipulate  multifasta files (DNA or protein). Therefore, you can extract/ exlude sequneces from the file. Also, you can convert Clustal2xlsx to get the longest conserved seq among your culstal files and you will get you a list and plots of the variants.
 
 ## Installation
 
