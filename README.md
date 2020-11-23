@@ -9,7 +9,7 @@ Make sure that you have python 3.7 or > and all the dependacies (Biopython, matp
 The tool was written to be used on Linux command line or any python IDE !
 
 ## Usage
-For your own comfort, make sure you have the files in the same directory as the tool!
+For your own comfort, make sure you have the files are in the same directory as the tool!
 Type in your command line, then just answer questions !
 
 
