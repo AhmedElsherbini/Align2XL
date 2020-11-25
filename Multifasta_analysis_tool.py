@@ -21,8 +21,6 @@ from Bio import Phylo
 from Bio.SeqUtils import GC
 from Bio import AlignIO
 from Bio.Align import AlignInfo
-from Bio.Phylo.TreeConstruction import DistanceCalculator
-from Bio.Blast import NCBIWWW
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
