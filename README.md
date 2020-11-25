@@ -21,7 +21,7 @@ python3 Multifasta_analysis_tool.py
 ## This tool can be used if..
 1- you want to extract a gene using its start/end postion in aligned_file.afa (more accurate) or multi/fasta file
 
-2- you want to inlucde certain sequences in your multifasta file with a certain pattern (ex: seq with certain mutation)
+2- you want to inlucde certain sequences in your multifasta file with a certain pattern (ex: gene with certain mutation)
 
 3- you want to exlude sequences in a multifasta file using a pattern in the sequneces (ex:NNN,XX)
 
@@ -35,9 +35,7 @@ python3 Multifasta_analysis_tool.py
 
 8- you want to know GC content and N bases content of your multifasta seq file
 
-9- you want to draw a Newick tree using python matplotlib
-
-10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call snp variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your where and how your mutations are!
+10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call snp variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your mutations are!
 
 ## Contributing
 Pull requests are very welcome. 
