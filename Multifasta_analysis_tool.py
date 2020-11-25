@@ -216,52 +216,10 @@ if (u == "y"):
     GFG.save()
     n_bases.save()
     print("here you are: GC_content.xlsx and N_bases.xlsx sheets")
-    #I have provided the output in a list of tupules but as you can convert easily to dic 
 ######################################################################################
 #%%
 #alignmnent
 
-x = input("11-To align, if for muscle press m, for Mafft press f,press any key to skip:")
-
-if (x == "m"):
-    file_path_out = input("what is name of the fasta file you would like to align?")
-    a = ("muscle_aligned.aln")
-     #C:\Users\ahmed\Downloads\merged_file.afa
-    m = ("tree.phy")
-    #C:\Users\ahmed\Downloads\merged_file.phy
-    muscle_cline = MuscleCommandline(input=file_path_out ,out = a , tree1 = m)
-    print(muscle_cline) # great advice: you can run this output in you shell/cmd
-    stdout, stderr = muscle_cline() #if you have alot/big files you will wait so much , back to great advice
-    print("here you are : musvle_aligned.aln and tree.phy ")
-
-elif (x == "f"):
-    file_path_out = input("what is name of the fasta file you would like to align?")
-    mafft_cline = MafftCommandline(input=file_path_out)
-    print(mafft_cline)
-    stdout, stderr = mafft_cline() #mafft is super fast 
-    #C:\Users\ahmed\Downloads\mafft_aligned.aln
-    with open("Mafft_aligned.aln", "w") as handle:
-        handle.write(stdout)
-        handle.close()
-    print("here you are: Mafft_aligned.aln")
-#################################################################################
-#%%
-#phylogentic tree
-
-tr = input("12_do you want to draw a phylogentic tree? y/n?")
-if (tr == "y"):
-    fathiha = input("is your tree (NOT) a newick formant like (.dnd,.nwk):press y/n:")
-    if (fathiha == "y"):
-        zeineb = input("what is the name of this tree?:")
-        lathifa = input("what is the format of this tree (ex:nexus)?:")
-        Phylo.convert(zeineb,str(lathifa),"New_file.dnd", "newick")
-
-    seham = input("So, what is the name of your newick tree(.dnd or.nwk)?:")
-    tree = Phylo.read(seham, 'newick')
-    tree.ladderize()   # Flip branches so deeper clades are displayed at top
-    Phylo.draw(tree, branch_labels=lambda c: c.branch_length, color = "green" )
-
-    print("here you are:the tree")
 
 
 ################################################################################    
@@ -278,7 +236,6 @@ if (w == "y"):
     #salah=int(input("which % of conservation you want to extract you seq (ex:100,90,..)?:"))
     #mz = int(float(salah/100)*int(len(aln)))
     mz = int(len(aln))
-    # 7 , 9 , 8000
     A = ("A"*mz)
     G = ("G"*mz)
     C = ("C"*mz)
@@ -380,7 +337,7 @@ if (w == "y"):
     print("here you are: longest_conserved_seq_%s_file.fasta"%(zizo))
     
    ####################################################
-    ##lets get unconserved basis
+    ##lets call variants
     hass =[]
     gogo = []
     for xe in range(aln.get_alignment_length()):
