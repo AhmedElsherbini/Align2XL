@@ -12,9 +12,9 @@ import os as os
 import sys
 from io import StringIO
 from Bio import Phylo
+from Bio import Entrez
 from Bio import SeqIO
 from Bio import Seq
-from Bio import AlignIO
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
 from Bio import Phylo
