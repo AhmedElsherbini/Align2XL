@@ -336,7 +336,7 @@ if (w == "y"):
     plt.scatter(kp,lp ,color = 'red' , s =.1,lw=4)
     plt.xlabel('length of your genome , gene or protein')
     plt.ylabel('number of unconserved bases/mutations in %s'%(zizo))
-    plt.title('Where you can expect mutations in you query seq (red dot = 1 mutation)')
+    plt.title('Mutations in you query seq (red dot = 1 mutation)')
     plt.savefig("mutations_map_%s_file.jpg"%(zizo)) #save your file!
     plt.close()
     
