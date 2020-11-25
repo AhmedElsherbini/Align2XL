@@ -33,15 +33,11 @@ python3 Multifasta_analysis_tool.py
 
 7- you want to translate DNA multifasta file on  it's 1st frame
 
-8- you want to efetch gene, gneome or protein seq  from NCBI or you want to merge your multifasta files in accurate and fast way 
+8- you want to know GC content and N bases content of your DNA seq file
 
-9- you want to know GC content and N bases content of your DNA seq file
+9- you want to draw a Newick tree using python matplotlib
 
-10- you want to align muscle or mafft
-
-11- you want to draw a Newick tree using python matplotlib
-
-12- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your where and how your mutations are!
+10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your where and how your mutations are!
 
 ## Contributing
 Pull requests are very welcome. 
