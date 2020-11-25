@@ -33,7 +33,7 @@ python3 Multifasta_analysis_tool.py
 
 7- you want to translate DNA multifasta file on  it's 1st frame
 
-8- you want to know GC content and N bases content of your DNA seq file
+8- you want to know GC content and N bases content of your multifasta seq file
 
 9- you want to draw a Newick tree using python matplotlib
 
