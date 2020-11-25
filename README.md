@@ -37,7 +37,7 @@ python3 Multifasta_analysis_tool.py
 
 9- you want to draw a Newick tree using python matplotlib
 
-10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your where and how your mutations are!
+10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call snp variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your where and how your mutations are!
 
 ## Contributing
 Pull requests are very welcome. 
