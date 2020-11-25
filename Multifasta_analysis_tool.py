@@ -86,7 +86,7 @@ if (tui == "y"):
            
 #########################################################################################
 
-f = input("4-do you want to  print all headers in your multifasta? y/n:")
+f = input("4_do you want to  print all headers in your multifasta? y/n:")
 if (f == "y"):
     sherb = input("what is the name of the multifasta file?")
     fin = "your_file_headers.txt"
@@ -96,7 +96,7 @@ if (f == "y"):
     out.close()
     print("here you are the file:your_file_headers.txt")
 ###########################################################################################
-f = input("5-do you want to include sequences using a pattern in their headers/metadate (ex:-2019-)? y/n:")
+f = input("5_do you want to include sequences using a pattern in their headers/metadate (ex:-2019-)? y/n:")
 if (f == "y"):
     sherb = input("what is the name of the fasta file?")
     homdemha = input("what is the pattern in seq header you want extract?")
@@ -129,7 +129,7 @@ if (tui == "y"):
 
 
 ##########################################################
-lui = input("7-do you want to extract gene from fasta/multifasta file using upstream and downstream seq? y/n:")
+lui = input("7_do you want to extract gene from fasta/multifasta file using upstream and downstream seq? y/n:")
 if (lui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
        fin = "exctracted_genes.fasta"
@@ -216,11 +216,6 @@ if (u == "y"):
     GFG.save()
     n_bases.save()
     print("here you are: GC_content.xlsx and N_bases.xlsx sheets")
-######################################################################################
-#%%
-#alignmnent
-
-
 
 ################################################################################    
 #%%
