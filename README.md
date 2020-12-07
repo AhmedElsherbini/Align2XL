@@ -31,7 +31,7 @@ python3 Multifasta_analysis_tool.py
 
 6- you want extract a gene from fasta/multifasta file using it's upstream and downstream sequence
 
-7- you want to translate DNA multifasta file on  it's 1st frame
+7- you want to translate DNA multifasta file or (multiple files at onece) on  it's (theirs) 1st frame
 
 8- you want to know GC content and N bases content of your multifasta seq file
 
