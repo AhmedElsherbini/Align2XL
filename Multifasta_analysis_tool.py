@@ -4,7 +4,7 @@
 created in : 7-June 2020
 This is a copy right for the author - do not distrbute
 dependacies: see below
-update: 25/11/2020
+update: 7/12/2020
 """
 #import
 
@@ -140,7 +140,7 @@ if (tui == "y"):
            
 
 ################################################
-a = input("8-do you want to translat DNA fasta file on its 1 frame? y/n:")
+a = input("8-do you want to translat DNA fasta file on its 1 frame (for one file only press y for folder of file press b)? y/b/n :")
 if (a == "y"):
     zeze = input("what is the name of DNA file?")
     with open ("translated_%s_file.fasta"%(zeze) , "w") as aa_fa:
@@ -150,6 +150,16 @@ if (a == "y"):
         aa_fa.close()
         print("here you are the file:translated_%s_file.fasta"%(zeze))
 
+elif (a =="b"): 
+    print("make sure you have only your fasta files in this folder")
+    dir = input("where is the direcroy you want to trlanslate  your files in?:") #batch file translate #make sure that they are in the same dir
+    for f in os.listdir(dir):
+        with open ("translated_%s_file.fasta"%(f) , "w") as aa_fa:
+            for dna_record in SeqIO.parse(f, "fasta"):
+                aa_fa.write(">"+dna_record.id+ "\n")
+                aa_fa.write(str(dna_record.seq.translate(to_stop=True))+"\n")
+            aa_fa.close()
+    print("here you are the file:translated_%s_file.fasta"%(f))
  
     
 ############################################################################################
