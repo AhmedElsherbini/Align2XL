@@ -35,7 +35,10 @@ python3 Multifasta_analysis_tool.py
 
 8- you want to know GC content and N bases content of your multifasta seq file
 
-10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call snp variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your mutations are!
+10- (Clustal2xlsx) you want to extract the longest conserved sequnece and you want to call variants between your aligned genomes , genes or proteins from a clustal_file.aln and the output is just a fasta for your conserved seq and the xlsx file of your variants with a graph which maps your mutations are!
+
+
+Extra: you can Clustal2xlsx for a batch of clustal files at once
 
 ## Contributing
 Pull requests are very welcome. 
