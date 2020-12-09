@@ -125,7 +125,7 @@ if (f == "y"):
 tui = input("7-do you want to exlude sequences in a multifasta file using pattern in their > ID header? y/n:")
 if (tui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
-       homdemha = input("what is sequnece pattern you want to exclude:")
+       homdemha = input("what is pattern of ID you want to exclude:")
        fin = "fasta_filtred_by_exclusion.fasta"
        out = open(fin,"w")
        for seq_record in SeqIO.parse(sherb, "fasta"):
