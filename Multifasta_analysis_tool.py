@@ -4,7 +4,7 @@
 created in : 7-June 2020
 This is a copy right for the author - do not distrbute
 dependacies: see below
-update: 8/12/2020
+update: 11/12/2020
 """
 #import
 
@@ -33,6 +33,22 @@ import fnmatch
 ####################################################################################
 
 print("Hi, let's start. Just answer questions PRECISELY!")
+##################################################################################
+f = input("if u want efetch your sequnece data from ncbi? y/n:")
+#if you have alreay a merged file skip and press any key
+if (f == "y"):
+    records = []
+    Entrez.email = input("Enter your email:")
+    db = input("Enter which DB (nucleotide or protein) you want:")
+    id = input("Enter your list (comma seperated) of your sequence access numbers (example:NC_004718.3,NC_019843.3):") 
+    #very useful if you have genes or proteins acesss IDs
+    with Entrez.efetch(db=db, id=id, rettype='fasta', retmode='text') as handle:
+        for seq_record in SeqIO.parse(handle, 'fasta'):
+            print("The sequence ID is %s and its length is %d." %(seq_record.id,len(seq_record.seq)))
+            rec = SeqRecord(seq_record.seq, id=seq_record.id)
+            records.append(rec)
+    SeqIO.write(records,'new_fetched_file.fasta' ,'fasta')
+    
 
 ###################################################################################
 #%% #in SPYDER this help to chunk the code!
