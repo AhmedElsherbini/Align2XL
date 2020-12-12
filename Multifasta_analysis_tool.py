@@ -4,7 +4,7 @@
 created in : 7-June 2020
 This is a copy right for the author - do not distrbute
 dependacies: see below
-update: 11/12/2020
+update: 12/12/2020
 """
 #import
 
@@ -29,11 +29,16 @@ import re
 from collections import Counter
 import copy
 import fnmatch
+from Bio.Align.Applications import ClustalwCommandline
+from Bio.Align.Applications import MuscleCommandline
+from Bio.Align.Applications import MafftCommandline
 
 ####################################################################################
 
 print("Hi, let's start. Just answer questions PRECISELY!")
-##################################################################################
+print("Here, my rules, answer y for working on a single file , b for to batch analysis all files in this folder , n to skip")
+print("for Batch mode, make sure all of your files have the same extension")
+###################################################################################
 f = input("if u want efetch your sequnece data from ncbi? y/n:")
 #if you have alreay a merged file skip and press any key
 if (f == "y"):
@@ -53,7 +58,7 @@ if (f == "y"):
 ###################################################################################
 #%% #in SPYDER this help to chunk the code!
 
-f = input ("1-do you want to extract genes using its start/end postion in aligned_file.afa (more accurate) or fasta  file? y/n: ")
+f = input ("1-do you want to extract genes using its start/end postion in aligned_file.afa (more accurate) or fasta  file? y/b/n: ")
 if (f =="y"):
         er = input ("what is the name of the file you want to extract from?")
         ah = input ("start position:")
@@ -63,11 +68,23 @@ if (f =="y"):
                   f.write(">"+str(seq_record.id)+"\n")
                   f.write(str(seq_record.seq[int(ah)-1:int(med)+1])+ "\n")
         print("here you are the file : Extract_by_position.fasta")
+
+elif (f == "b"):
+    ah = input ("start position:")
+    med = input ("end position:")
+    for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                    with open ("filter_by_position_%s.fasta"%(sherb), "w") as f:
+                         for seq_record in SeqIO.parse(sherb, "fasta"):
+                              f.write(">"+str(seq_record.id)+"\n")
+                              f.write(str(seq_record.seq[int(ah)-1:int(med)+1])+ "\n")
+    print("here you are the files : Extract_by_position_x.fasta")
+      
 ###########################################################################################
-lui = input("2-do you want to extract gene from fasta/multifasta file using upstream and downstream seq? y/n:")
+lui = input("2-do you want to extract gene from fasta/multifasta file using upstream and downstream seq? y/b/n:")
 if (lui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
-       fin = "exctracted_genes.fasta"
+       fin = "exctracted_genes%s.fasta" %(sherb)
        out = open(fin,"w")
        print("make sure you give me from 10 to 15 bp length seq")
        x = input("what is sequnece  the 5'/upstream of the gene ?:")
@@ -79,8 +96,26 @@ if (lui == "y"):
                out.write(str(x)+str(ss[0])+str(y)+"\n")
        out.close()
        print("here you are the file:exctracted_genes.fasta")
+
+elif (lui == "b"):
+     print("make sure you give me from 10 to 15 bp length seq")
+     x = input("what is sequnece  the 5'/upstream of the gene ?:")
+     y = input("what is sequnece the 3'/downstream of the gene ?:")
+     for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa')or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+               fin = "exctracted_genes_%s.fasta" %(sherb)
+               out = open(fin,"w")
+               for seq_record in SeqIO.parse(sherb, "fasta"):
+                   ss = re.findall('%s(.+)%s'%(x,y), str(seq_record.seq))
+                   if ss != []:
+                       out.write(">"+str(seq_record.id)+"\n")
+                       out.write(str(x)+str(ss[0])+str(y)+"\n")
+               out.close()
+     print("here you are the files:exctracted_genes.fasta")
+
+    
 #########################################################################################
-tui = input("3-do you want to inlucde certain sequences from a multifasta file using a seq pattern (ex: genes with certain pattern)? y/n:")
+tui = input("3-do you want to inlucde certain sequences from a multifasta file using a seq pattern (ex: genes with certain pattern)? y/b/n:")
 if (tui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
        homdemha = input("what is pattern you want to keep its genes ATTGCGTGTGTGT or KOPGTLSTTSG :")
@@ -93,14 +128,31 @@ if (tui == "y"):
      
        print("here you are the file : fasta_filtred_by_seq_inclusion.fasta")
        out.close()
+       
+elif (tui == "b"):
+   homdemha = input("what is pattern you want to keep its genes ATTGCGTGTGTGT or KOPGTLSTTSG :")
+   for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                   fin = "fasta_filtred_by_inculsion%s.fasta" %(sherb)
+                   out = open(fin,"w")
+                   for seq_record in SeqIO.parse(sherb, "fasta"):
+                       if (seq_record.seq.find(homdemha) != -1):
+                           out.write(">"+str(seq_record.id)+"\n")
+                           out.write(str(seq_record.seq.ungap("-"))+"\n")
+                 
+                   out.close()
+   print("here you are the file : fasta_filtred_by_seq_inclusion.fasta")
+
 
 
 ########################################################################################
-tui = input("4-do you want to exlude sequences in a multifasta file using sequneces pattern (ex:N,X)? y/n:")
+
+tui = input("4-do you want to exlude sequences in a multifasta file using sequneces pattern (ex:N,X)? y/b/n:")
 if (tui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
-       homdemha = input("what is sequnece pattern you want to exclude:")
-       fin = "fasta_filtred_by_exclusion.fasta"
+       print("know that one N  or x is enough to exlude all seqs with NNN.. or xxx..")
+       homdemha = input("what is sequnece pattern you want to exclude from your file:")
+       fin = "fasta_filtred_by_exclusion%s.fasta" %(sherb)
        out = open(fin,"w")
        for seq_record in SeqIO.parse(sherb, "fasta"):
            if (seq_record.seq.find(homdemha) != -1):
@@ -111,24 +163,54 @@ if (tui == "y"):
 
        print("here you are the file : fasta_filtred_by_seq_Exclusion.fasta")
        out.close()
+       
+elif (tui == "b"):
+    print("know that one N  or x is enough to exlude all seqs with NNN.. or xxx..")
+    homdemha = input("what is sequnece pattern you want to exclude from you files:")
+    for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                   fin = "fasta_filtred_by_exclusion%s.fasta" %(sherb)
+                   out = open(fin,"w")
+                   for seq_record in SeqIO.parse(sherb, "fasta"):
+                       if (seq_record.seq.find(homdemha) != -1):
+                           continue
+                       else:
+                           out.write(">"+str(seq_record.id)+"\n")
+                           out.write(str(seq_record.seq.ungap("-"))+"\n")
+            
+                   out.close()
+    print("here you are the file : fasta_filtred_by_seq_Exclusion.fasta")
+
+                    
            
 #########################################################################################
 
-f = input("5-do you want to  print all > ID headers in your multifasta? y/n:")
+f = input("5-do you want to  print all > ID headers in your multifasta file? y/b/n:")
 if (f == "y"):
     sherb = input("what is the name of the multifasta file?")
-    fin = "your_file_headers.txt"
+    fin = "your_file_headers_%s.txt" %(sherb)
     out = open(fin, "w")
     for seq_record in SeqIO.parse(sherb, "fasta"):
         out.write(">"+str(seq_record.id)+"\n")
     out.close()
     print("here you are the file:your_file_headers.txt")
+    
+elif (f == "b"):
+     for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                fin = "your_file_headers_%s.txt" %(sherb)
+                out = open(fin, "w")
+                for seq_record in SeqIO.parse(sherb, "fasta"):
+                    out.write(">"+str(seq_record.id)+"\n")
+                out.close()
+     print("here you are the file:your_file_headers.txt")
+                
 ###########################################################################################
-f = input("6-do you want to include sequences using a pattern in their > ID headers (ex:-2019-)? y/n:")
+f = input("6-do you want to include sequences using a pattern in their > ID headers (ex:-2019-)? y/b/n:")
 if (f == "y"):
     sherb = input("what is the name of the fasta file?")
     homdemha = input("what is the pattern in seq header you want extract?")
-    fin = "extracted_by_header.fasta"
+    fin = "extracted_by_header%s.fasta" %(sherb)
     out = open(fin, "w")
     for seq_record in SeqIO.parse(sherb, "fasta"):
         if (seq_record.id.find(homdemha) != -1):
@@ -137,12 +219,26 @@ if (f == "y"):
     out.close()
     print("here you are the file:extracted_by_header_inclusion.fasta")
 
+elif (f == "b"):
+     homdemha = input("what is the pattern in seq header you want extract?")
+     for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                fin = "extracted_by_header%s.fasta" %(sherb)
+                out = open(fin, "w")
+                for seq_record in SeqIO.parse(sherb, "fasta"):
+                    if (seq_record.id.find(homdemha) != -1):
+                        out.write(">"+str(seq_record.id)+"\n")
+                        out.write(str(seq_record.seq)+"\n")
+                out.close()
+     print("here you are the file:extracted_by_header_inclusion.fasta")
+
+
 ########################################################################################
 tui = input("7-do you want to exlude sequences in a multifasta file using pattern in their > ID header? y/n:")
 if (tui == "y"):
        sherb = input("what is the name of your fasta/multifasta file:")
-       homdemha = input("what is pattern of ID you want to exclude:")
-       fin = "fasta_filtred_by_exclusion.fasta"
+       homdemha = input("what is ID pattern you want to exclude:")
+       fin = "fasta_filtred_by_exclusion_%s.fasta" %(sherb)
        out = open(fin,"w")
        for seq_record in SeqIO.parse(sherb, "fasta"):
            if (seq_record.id.find(homdemha) != -1):
@@ -153,6 +249,23 @@ if (tui == "y"):
 
        print("here you are the file : fasta_filtred_by_header_Exclusion.fasta")
        out.close()
+       
+elif (f == "b"):
+     homdemha = input("what is ID pattern you want to exclude:")
+     for sherb in os.listdir():
+            if fnmatch.fnmatch(sherb, '*.fasta') or fnmatch.fnmatch(sherb, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                   fin = "fasta_filtred_by_exclusion_%s.fasta" %(sherb)
+                   out = open(fin,"w")
+                   for seq_record in SeqIO.parse(sherb, "fasta"):
+                       if (seq_record.id.find(homdemha) != -1):
+                           continue
+                       else:
+                           out.write(">"+str(seq_record.id)+"\n")
+                           out.write(str(seq_record.seq.ungap("-"))+"\n")
+            
+                   out.close()
+     print("here you are the files : fasta_filtred_by_header_Exclusion.fasta")
+
            
 
 ################################################
@@ -169,19 +282,19 @@ if (a == "y"):
 elif (a =="b"): 
     print("make sure you have only your fasta files in this folder")
     for f in os.listdir():
-        if fnmatch.fnmatch(f, '*.fa') or fnmatch.fnmatch(f, '*.fasta'):
+        if fnmatch.fnmatch(f, '*.fa') or fnmatch.fnmatch(f, '*.fasta') or fnmatch.fnmatch(f, '*.fna') or  fnmatch.fnmatch(f, '*.fsa'):
             with open ("translated_%s_file.fasta"%(f) , "w") as aa_fa:
                 for dna_record in SeqIO.parse(f, "fasta"):
                     aa_fa.write(">"+dna_record.id+ "\n")
                     aa_fa.write(str(dna_record.seq.translate(to_stop=True))+"\n")
                 aa_fa.close()
-        print("here you are the file:translated_files.fasta")
+    print("here you are the file:translated_files.fasta")
  
     
 ############################################################################################
 #%%
 #gc conent and At and number of unkown bases (extra work)
-u = input("9-do you want to know GC content and N bases content of your Mmultifasta file? press y/n:")
+u = input("9-do you want to know GC content and N bases content of your Mmultifasta file? press y/b/n:")
 if (u == "y"):
     file_path_out = input("what is the name of your file?")
     k = [("ID","GC content%")]
@@ -191,8 +304,8 @@ if (u == "y"):
         w.append((seq_record.id,(((float(str(seq_record.seq).count("N" or "n"))/len(seq_record.seq)))*100)))
         #I care about unkown bases percentage as i care about GC%
    
-    GFG = pd.ExcelWriter("GC_content.xlsx")
-    n_bases = pd.ExcelWriter("N_bases.xlsx")
+    GFG = pd.ExcelWriter("GC_content%s.xlsx"%(file_path_out))
+    n_bases = pd.ExcelWriter("N_bases_%s.xlsx"%(file_path_out))
     df = pd.DataFrame(k)
     nf = pd.DataFrame(w)
     df.to_excel(GFG, index = False)
@@ -200,19 +313,87 @@ if (u == "y"):
     GFG.save()
     n_bases.save()
     print("here you are: GC_content.xlsx and N_bases.xlsx sheets")
-    #I have provided the output in a list of tupules but as you can convert easily to dic 
 
+elif (u == "b"):
+    for zizo in os.listdir():
+            if fnmatch.fnmatch(zizo, '*.fasta') or fnmatch.fnmatch(zizo, '*.fa') or fnmatch.fnmatch(sherb, '*.fna') or  fnmatch.fnmatch(sherb, '*.fsa'):
+                        k = [("ID","GC content%")]
+                        w = [("ID", "unknown bases%")]
+                        for seq_record in SeqIO.parse(zizo,"fasta"):
+                            k.append((seq_record.id,GC(seq_record.seq)))
+                            w.append((seq_record.id,(((float(str(seq_record.seq).count("N" or "n"))/len(seq_record.seq)))*100)))
+                            #I care about unkown bases percentage as i care about GC%
+                       
+                        GFG = pd.ExcelWriter("GC_content%s.xlsx"%(zizo))
+                        n_bases = pd.ExcelWriter("N_bases_%s.xlsx"%(zizo))
+                        df = pd.DataFrame(k)
+                        nf = pd.DataFrame(w)
+                        df.to_excel(GFG, index = False)
+                        nf.to_excel(n_bases, index = False)
+                        GFG.save()
+                        n_bases.save()
+    print("here you are: GC_content.xlsx and N_bases.xlsx sheets")
+                
+    
+    #I have provided the output in a list of tupules but as you can convert easily to dic 
+#################################################################################
+x = input("10-To align, if for muscle press m, for Mafft press f,press any key to skip:")
+
+if (x == "m"):
+    shenawy= input("do you want to anaylse single file or all of you fasta files(y/b):")
+    if (shenawy == "y"):
+        a = input("what is name of your aln file?")
+         #C:\Users\ahmed\Downloads\merged_file.afa
+        muscle_cline = MuscleCommandline(input= a ,out = "muscle_aligned_%s.aln"%(a) , tree1 = "tree%s.phy"%(a))
+        print(muscle_cline)
+        print('running....')
+        stdout, stderr = muscle_cline() #if you have alot/big files you will wait so much , back to great advice
+        print("Done,check for your merged_file.afa and merged_file.phy ")
+    
+    elif (shenawy =="b"):
+        for zizo in os.listdir():
+            if fnmatch.fnmatch(zizo, '*.fasta') or fnmatch.fnmatch(zizo, '*.fa'):
+                    muscle_cline = MuscleCommandline(input= zizo ,out = "muscle_aligned_%s.aln"%(zizo) , tree1 = "tree%s.phy"%(zizo))
+                    print(muscle_cline)
+                    print('running....')
+                    stdout, stderr = muscle_cline() #if you have alot/big files you will wait so much , back to great advice
+        print("Done,check for your files")
+                
+elif (x == "f"):
+    shenawy= input("do you want to anaylse single file or all of you fasta files(y/b):")
+    if (shenawy == "y"):
+        a = input("what is name of your aln file?")
+        mafft_cline = MafftCommandline(input=a)
+        print(mafft_cline)
+        stdout, stderr = mafft_cline() #mafft is super fast 
+        print("running....")
+        with open('mafft_aligned_%s.afa'%(a), "w") as handle:
+            handle.write(stdout)
+            handle.close()
+        print("Done,check for your aligned.aln in your dir")
+    elif (shenawy == "b"):
+        for zizo in os.listdir():
+            if fnmatch.fnmatch(zizo, '*.fasta') or fnmatch.fnmatch(zizo, '*.fa'):
+                            mafft_cline = MafftCommandline(input=zizo)
+                            print(mafft_cline)
+                            stdout, stderr = mafft_cline() #mafft is super fast 
+                            print("running....")
+                            with open('mafft_aligned_%s.afa'%(zizo), "w") as handle:
+                                handle.write(stdout)
+                                handle.close()
+        print("Done,check for your aligned.aln in your dir")        
 
 ################################################################################    
 #%%
-#to extract conserved _muation from protein
+#lets extract the conserved part of 
  
-w = input("10-do you want to extract the longest conserved seq & the mutations inside your clustal_file.aln? press y/b/n:")
+w = input("11-do you want to extract the longest conserved seq & the mutations inside your clustal_file.aln ? press y/b/n:")
 #C:/Users/ahmed/Downloads/merged_file.aln #kindly know that this code is not adapted to clustal files only
 if (w == "y"):
     print("make sure you input file.aln does not have any outliers,indels and outgroups")
-    zizo = input("what is the name of your file.aln:")
-    aln = AlignIO.read(zizo, "clustal")
+    zizo = input("what is the name of your file:")
+    afsha = input("what is the format of your aligned file(example:clustal, fasta ,phylip):")
+    aln = AlignIO.read(zizo,afsha)
     #C:/Users/ahmed/Downloads/protein_alignment.aln
     #salah=int(input("which % of conservation you want to extract you seq (ex:100,90,..)?:"))
     #mz = int(float(salah/100)*int(len(aln)))
@@ -374,16 +555,17 @@ if (w == "y"):
     plt.savefig("mutations_frequency_%s_file.jpg"%(zizo)) #save your file!
     plt.close()
     print("here you are: mutations_file.xlsx,mutations_map and frequency plots ")
-    print("#This the end of our journey :( , hope to see you again! ")
-    print ("If you encounter any issues using me, feel free to contact Ahmed")
+   
     #the idea here i want to know where my mutations or my unconervead bases positions in geneme
     #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clusta
     ##########################################################################################
 elif (w =="b"): 
     print("make sure you have only your fasta files in this folder")
+    afsha = input("what is the format of your aligned files (example:clustal, fasta ,phylip):")
+    gabl = input("what is the (*.extension) of this file (example of answer: *.aln, *.afa ,*.fa)?:")
     for zizo in os.listdir():
-        if fnmatch.fnmatch(zizo, '*.aln'):
-            aln = AlignIO.read(zizo, "clustal") 
+        if fnmatch.fnmatch(zizo, gabl):
+            aln = AlignIO.read(zizo,afsha) 
             mz = int(len(aln))
   
             A = ("A"*mz)
@@ -543,7 +725,7 @@ elif (w =="b"):
             plt.close()
 
             print("here you are: mutations_file.xlsx,mutations_map and frequency plots")
-print("#This the end of our journey :) , hope to see you again! ")
+print("#This the end of our journey :( , hope to see you again! ")
 print ("If you encounter any issues using me, feel free to contact Ahmed")
             #the idea here i want to know where my mutations or my unconervead bases positions in geneme
             #do not forget, if you have gap in your align mutation position will be shifted, remove gap from clusta
