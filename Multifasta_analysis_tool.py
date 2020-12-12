@@ -1,1 +1,1 @@
-print("wainting for the next relaese")
+print("the script is now updating contact me to get the new release")
