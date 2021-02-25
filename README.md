@@ -1,4 +1,4 @@
-# Multifasta_analysis_tool 
+# Align2XL
 Since 30/12/2020: the script is now updating contact me to get the new release
 stay tuned !
 
