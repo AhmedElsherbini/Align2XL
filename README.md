@@ -16,7 +16,7 @@ Type in your command line, then just answer questions !
 
 
 ```python
-python3 Multifasta_analysis_tool.py
+python3 Align2XL.py
 
 ```
 
