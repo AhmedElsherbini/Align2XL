@@ -1,4 +1,4 @@
-![align2xl](https://user-images.githubusercontent.com/49863685/110328892-3580b880-801c-11eb-83f7-8b646556fa18.jpg)
+![align2xl](https://user-images.githubusercontent.com/49863685/110363708-2e20d580-8043-11eb-9df1-cfda419da2d3.jpg)
 
 Since 30/12/2020: the script is now updating contact me to get the new release
 
