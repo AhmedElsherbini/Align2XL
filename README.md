@@ -1,4 +1,4 @@
-![Align2XL](https://user-images.githubusercontent.com/49863685/110310066-63f19a00-8002-11eb-86ff-46f62d52cfbd.jpg)
+![align2xl](https://user-images.githubusercontent.com/49863685/110328892-3580b880-801c-11eb-83f7-8b646556fa18.jpg)
 
 Since 30/12/2020: the script is now updating contact me to get the new release
 
