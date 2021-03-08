@@ -1,4 +1,5 @@
-# Align2XL
+![Align2XL](https://user-images.githubusercontent.com/49863685/110310066-63f19a00-8002-11eb-86ff-46f62d52cfbd.jpg)
+
 Since 30/12/2020: the script is now updating contact me to get the new release
 
 This tool is used to filter and manipulate  multifasta files (DNA or protein). Therefore, you can extract/ exlude sequneces from the file. Also, you can convert  to get the longest conserved seq among your culstal files and you will get you a list and plots of the variants.
