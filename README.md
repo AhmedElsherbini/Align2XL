@@ -2,7 +2,7 @@
 
 Since 30/12/2020: the script is now updating contact me to get the new release
 
-This tool is used to filter and manipulate  multifasta files (DNA or protein). Therefore, you can extract/ exlude sequneces from the file. Also, you can convert  to get the longest conserved seq among your culstal files and you will get you a list and plots of the variants.
+This tool is used to filter and manipulate  multifasta files and aligned (DNA or protein). Therefore, you can extract/ exlude sequneces from the file. Also, you can convert  to get the longest conserved seq among your culstal files and you will get you a list and plots of the variants. Knowing I can provide you with some basic stats about whihc mutations are assoictaed with which mutation in your alignmnet file.
 
 ## Installation
 
